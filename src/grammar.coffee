@@ -218,6 +218,7 @@ grammar =
     o 'ParamVar ...',                           -> new Param $1, null, on
     o 'ParamVar = Expression',                  -> new Param $1, $3
     o '...',                                    -> new Expansion
+    o 'AngularScope',                           -> new Param new Literal '$scope'
   ]
 
   # Function Parameters
@@ -239,6 +240,8 @@ grammar =
     o 'Value Accessor',                         -> $1.add $2
     o 'Invocation Accessor',                    -> new Value $1, [].concat $2
     o 'ThisProperty'
+    o 'AngularScopeProperty'
+    o 'AngularScope'
   ]
 
   # Everything that can be assigned to.
@@ -326,6 +329,16 @@ grammar =
   Arguments: [
     o 'CALL_START CALL_END',                    -> []
     o 'CALL_START ArgList OptComma CALL_END',   -> $2
+  ]
+
+  # A reference to a property on the angular scope.
+  AngularScopeProperty: [
+    o '@ @ Identifier',                         -> new Value LOC(1)(new Literal('$scope')), [LOC(2)(new Access($3))], '$scope'
+  ]
+
+  # An angular scope.
+  AngularScope: [
+    o '@ @',                                    -> new Value new Literal '$scope'
   ]
 
   # A reference to the *this* current object.
