@@ -1,13 +1,14 @@
 {
-  "name": "coffee-script",
-  "description": "Unfancy JavaScript",
+  "name": "angular-coffee-script",
+  "description": "Unfancy JavaScript (with AngularJS Tweaks)",
   "keywords": [
     "javascript",
     "language",
     "coffeescript",
-    "compiler"
+    "compiler",
+    "angular"
   ],
-  "author": "Jeremy Ashkenas",
+  "author": "Jeremy Ashkenas (AngularJS Tweaks by Jan Lelis)",
   "version": "1.7.1",
   "license": "MIT",
   "engines": {
@@ -18,17 +19,17 @@
   },
   "main": "./lib/coffee-script/coffee-script",
   "bin": {
-    "coffee": "./bin/coffee",
-    "cake": "./bin/cake"
+    "ng-coffee": "./bin/ng-coffee",
+    "ng-cake": "./bin/ng-cake"
   },
   "scripts": {
-    "test": "node ./bin/cake test"
+    "test": "node ./bin/ng-cake test"
   },
-  "homepage": "http://coffeescript.org",
-  "bugs": "https://github.com/jashkenas/coffee-script/issues",
+  "homepage": "https://github.com/janlelis/angular-coffee-script",
+  "bugs": "https://github.com/janlelis/angular-coffee-script/issues",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jashkenas/coffee-script.git"
+    "url": "git://github.com/janlelis/angular-coffee-script.git"
   },
   "devDependencies": {
     "uglify-js": "~2.2",

@@ -41,7 +41,7 @@ if require.extensions
 # to fork both CoffeeScript files, and JavaScript files, directly.
 if child_process
   {fork} = child_process
-  binary = require.resolve '../../bin/coffee'
+  binary = require.resolve '../../bin/ng-coffee'
   child_process.fork = (path, args, options) ->
     if helpers.isCoffee path
       unless Array.isArray args

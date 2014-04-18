@@ -16,7 +16,7 @@ unless process.env.NODE_DISABLE_COLORS
 # Built file header.
 header = """
   /**
-   * CoffeeScript Compiler v#{CoffeeScript.VERSION}
+   * CoffeeScript Compiler v#{CoffeeScript.VERSION} (Angular Edition)
    * http://coffeescript.org
    *
    * Copyright 2011, Jeremy Ashkenas
@@ -32,7 +32,7 @@ build = (cb) ->
 
 # Run a CoffeeScript through our node/coffee interpreter.
 run = (args, cb) ->
-  proc =         spawn 'node', ['bin/coffee'].concat(args)
+  proc =         spawn 'node', ['bin/ng-coffee'].concat(args)
   proc.stderr.on 'data', (buffer) -> console.log buffer.toString()
   proc.on        'exit', (status) ->
     process.exit(1) if status != 0
@@ -78,8 +78,8 @@ task 'install', 'install CoffeeScript into /usr/local (or --prefix)', (options) 
   exec([
     "mkdir -p #{lib} #{bin}"
     "cp -rf bin lib LICENSE README package.json src #{lib}"
-    "ln -sfn #{lib}/bin/coffee #{bin}/coffee"
-    "ln -sfn #{lib}/bin/cake #{bin}/cake"
+    "ln -sfn #{lib}/bin/ng-coffee #{bin}/ng-coffee"
+    "ln -sfn #{lib}/bin/ng-cake #{bin}/ng-cake"
     "mkdir -p ~/.node_libraries"
     "ln -sfn #{lib}/lib/coffee-script #{node}"
   ].join(' && '), (err, stdout, stderr) ->
@@ -142,7 +142,7 @@ task 'build:browser', 'rebuild the merged script for inclusion in the browser', 
 
 task 'doc:site', 'watch and continually rebuild the documentation for the website', ->
   source = 'documentation/index.html.js'
-  exec 'bin/coffee -bc -o documentation/js documentation/coffee/*.coffee'
+  exec 'bin/ng-coffee -bc -o documentation/js documentation/coffee/*.coffee'
 
   do renderIndex = ->
     codeSnippetCounter = 0
